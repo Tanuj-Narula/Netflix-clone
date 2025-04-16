@@ -50,7 +50,7 @@ function Search({setsearchOpen , searchOpen}) {
             </motion.div>
 
      {movie.results && movie.results.length > 0 && (  
-       <MovieDetails movieID = {movie.results[0].id} onClose={() => toggleInfo()} />)}
+       <MovieDetails movieID = {movie.results[0].id} onClose={() => toggleInfo()} type={'movie'} />)}
             
     </div>
   )

@@ -32,7 +32,7 @@ function Navbar() {
           </NavLink>
           <ul className="flex gap-5 items-center text-sm">
             <NavLink to={"/browse"} className={({isActive}) => `${isActive ? "font-bold" : "" } hover:text-gray-300`}><li>Home</li></NavLink>
-            <NavLink to={"/Tv"} className={({isActive}) => `${isActive ? "font-bold" : "" } hover:text-gray-300`}><li>TV Shows</li></NavLink>
+            <NavLink to={"/Tvshows"} className={({isActive}) => `${isActive ? "font-bold" : "" } hover:text-gray-300`}><li>TV Shows</li></NavLink>
             <NavLink to={"/Movies"} className={({isActive}) => `${isActive ? "font-bold" : "" } hover:text-gray-300`}><li>Movies</li></NavLink>
             <NavLink to={"/mylist"} className={({isActive}) => `${isActive ? "font-bold" : "" } hover:text-gray-300`}><li>My List</li></NavLink>
           </ul>

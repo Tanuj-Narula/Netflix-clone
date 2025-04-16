@@ -89,7 +89,7 @@ function MovieRow({data}) {
      
     </div>
     {showInfo && movieId && ( 
-      <MovieDetails movieID={movieId} onClose={toggleInfo}/>
+      <MovieDetails movieID={movieId} onClose={toggleInfo} type={'movie'}/>
     )}
     </>
   );

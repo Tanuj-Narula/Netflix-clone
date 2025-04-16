@@ -10,6 +10,7 @@ import Mylist from './pages/Mylist';
 import { useState, useEffect } from 'react';
 import userContext from './contexts/userContext';
 import { MovieProvider } from './contexts/moviesContext.jsx';
+import { TvProvider } from './contexts/TvContext.jsx';
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
   return (
     
       <BrowserRouter>
+        <TvProvider>
         <MovieProvider>
         <userContext.Provider value={{ user, setuser}}>
         <Navbar /> 
@@ -32,7 +34,7 @@ function App() {
           {!user.isLoggedIn && <Route path="/signup" element={<Login useCase="Sign up" />} />}
           {!user.isLoggedIn && <Route path="/signin" element={<Login useCase="Sign in" />} />}
           {user.isLoggedIn && <Route path="/browse" element={<Home />} />}
-          {user.isLoggedIn && <Route path="/TV" element={<Tvshows />} />}
+          {user.isLoggedIn && <Route path="/TVshows" element={<Tvshows />} />}
           {user.isLoggedIn && <Route path="/Movies" element={<Movies />} />}
           {user.isLoggedIn && <Route path="/mylist" element={<Mylist />} />}
         </Routes>
@@ -41,6 +43,7 @@ function App() {
       
         </userContext.Provider>
         </MovieProvider>
+        </TvProvider>
       </BrowserRouter>
  
   );

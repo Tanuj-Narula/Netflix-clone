@@ -6,16 +6,11 @@ import axios from "axios";
 import userContext from '../contexts/userContext';
 
 
-const MovieDetails = ({ movieID, onClose, type }) => {
+const TvDetails = ({ movieID, onClose }) => {
   const { user } = useContext(userContext);
 const userId = user?._id;
   const [movie, setMovie] = useState([]);
-  let url = '';
-  if(type === 'movie'){
-    url = `https://api.themoviedb.org/3/movie/${movieID}?language=en-US`;
-  }else{
-    url = `https://api.themoviedb.org/3/tv/${movieID}?language=en-US`;
-  }
+  const url = `https://api.themoviedb.org/3/tv/${movieID}?language=en-US`
   const headers= {
     accept: 'application/json',
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5YzYwZDVlNGVlMmMzMjZmNzJmM2NkOTEzMDFlYjc4MiIsIm5iZiI6MTc0MDExNjgwMy4zMTYsInN1YiI6IjY3YjgxMzQzNzQzNDIwMGMyODIyNWU1YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.VIkAZTBJEgdIRScdVsncRWzTkxSAeR87VYkMDH1Q58Y'
@@ -69,8 +64,8 @@ const userId = user?._id;
          className="h-[60%] rounded-lg"
        />
        <div className="absolute h-[56%] min-w-xs top-6 left-6 text-4xl font-bold mb-4 bg-gradient-to-r from-[#000000be]  via-[#0000007e] via-80% to-100% to-transparent p-5 flex flex-col justify-end rounded-b-lg">
-         <h1 className="mb-0.5">{movie.title || movie.name}</h1>
-         <h4 className="text-lg text-gray-300 ml-1.5 mb-4">{movie.tagline || movie.type}</h4>
+         <h1 className="mb-0.5">{movie.title}</h1>
+         <h4 className="text-lg text-gray-300 ml-1.5 mb-4">{movie.tagline}</h4>
        </div>
        
        <div className="w-full flex flex-col justify-between">
@@ -96,7 +91,7 @@ const userId = user?._id;
 </button>
          </div>
          <div>
-           <span className="text-white">{movie.release_date?(movie.release_date.slice(0,4)):(movie.last_air_date.slice(0,4))}  || </span>
+           <span className="text-white">{movie.release_date.slice(0,4)}  || </span>
            {movie.genres.map((genre)=>{
              return <span key={genre.id} className="text-white ml-3">{genre.name}</span>
            })}
@@ -113,4 +108,5 @@ const userId = user?._id;
   );
 };
 
-export default MovieDetails;
+export default TvDetails;
+

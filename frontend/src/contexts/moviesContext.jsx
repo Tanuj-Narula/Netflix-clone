@@ -13,7 +13,7 @@ export const MovieProvider = ({ children }) => {
     async function fetchData(){
       try{
         const response = await axios.get('http://localhost:3000/movies')
-        console.log(response.data.results)
+      
         setData(response.data.results);
       }
       catch(error){
@@ -27,7 +27,7 @@ export const MovieProvider = ({ children }) => {
     async function fetchTopRated(){
       try{
         const response = await axios.get('http://localhost:3000/movies/top_rated')
-        console.log(response.data.results)
+      
         set_Top_rated(response.data.results);
       }
       catch(error){
@@ -42,7 +42,7 @@ export const MovieProvider = ({ children }) => {
     async function fetchUpcoming(){
       try{
         const response = await axios.get('http://localhost:3000/movies/upcoming')
-        console.log(response.data.results)
+      
         set_Upcoming(response.data.results);
       }
       catch(error){
@@ -56,7 +56,7 @@ export const MovieProvider = ({ children }) => {
     async function fetchNowPlaying(){
       try{
         const response = await axios.get('http://localhost:3000/movies/Now_playing')
-        console.log(response.data.results)
+      
         set_Now_playing(response.data.results);
       }
       catch(error){

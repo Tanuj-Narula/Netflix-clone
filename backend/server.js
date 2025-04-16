@@ -4,6 +4,7 @@ import db from "./db.js";
 import dotenv from "dotenv";
 import auth from './routes/auth.js';
 import movies  from "./routes/movies.js";
+import tv from "./routes/tv.js";
 import router from "./routes/mylist.js";
 
   
@@ -16,6 +17,7 @@ app.use(json());
 app.use(cors());
 app.use("/auth", auth);
 app.use("/movies", movies);
+app.use("/tv", tv);
 app.use("/mylist", router); 
 
 
