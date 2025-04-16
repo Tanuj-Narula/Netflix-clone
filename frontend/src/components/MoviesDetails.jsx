@@ -1,10 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useContext } from "react";
 import { FaPlay } from "react-icons/fa";
 import { CiBookmarkPlus } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
 import axios from "axios";
+import userContext from '../contexts/userContext';
+
 
 const MovieDetails = ({ movieID, onClose }) => {
+  const { user } = useContext(userContext);
+const userId = user?._id;
   const [movie, setMovie] = useState([]);
   const url = `https://api.themoviedb.org/3/movie/${movieID}?language=en-US`
   const headers= {
@@ -69,9 +73,22 @@ const MovieDetails = ({ movieID, onClose }) => {
            <button className="bg-neutral-200 text-black px-6 py-3 flex items-center rounded-lg font-semibold hover:bg-white cursor-pointer">
              <FaPlay className="h-6 w-6 mr-2" /> Play
            </button>
-           <button className="bg-neutral-700 text-white px-6 py-3 flex items-center rounded-lg font-semibold hover:bg-neutral-600 cursor-pointer">
-             <CiBookmarkPlus className="h-6 w-6 mr-2" /> Add to My List
-           </button>
+           <button
+  className="bg-neutral-700 text-white px-6 py-3 flex items-center rounded-lg font-semibold hover:bg-neutral-600 cursor-pointer"
+  onClick={async () => {
+    try {
+      await axios.post("http://localhost:5000/mylist/", {
+        userId,
+        movieId: movieID,
+      });
+      alert("Added to My List!");
+    } catch (error) {
+      console.error("Error saving movie to list:", error);
+    }
+  }}
+>
+  <CiBookmarkPlus className="h-6 w-6 mr-2" /> Add to My List
+</button>
          </div>
          <div>
            <span className="text-white">{movie.release_date.slice(0,4)}  || </span>
@@ -82,6 +99,7 @@ const MovieDetails = ({ movieID, onClose }) => {
            <p className="text-white" >Runtime: {movie.runtime} min</p>
            <p className="text-lg text-white my-2 ">{movie.overview}</p>
          </div>
+      
        </div>
        </>
        )}
